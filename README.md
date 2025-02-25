@@ -5,13 +5,13 @@ Headless Basics is a Next.js starter kit designed for multi-CMS support and adva
 ## What Does It Do?
 
 1. **Multi-CMS Architecture**  
-   This project supports different CMS systems (e.g., Umbraco Heartcore, Sanity, etc.) by providing an abstraction layer in `@/@conversiondigital/cd-headless-data`. This allows you to change or extend the CMS without rewriting the entire frontend.
+   This project supports different CMS systems (e.g., Umbraco Heartcore, Sanity, etc.) by providing an abstraction layer in `@/@conversiondigital/headless-basics-data`. This allows you to change or extend the CMS without rewriting the entire frontend.
 
 2. **Modular Component Structure**  
    With a folder-based, component-driven approach, Headless Basics encourages code reuse, testability, and clarity. The code is laid out so that each “theme component” or “site component” can be individually tested, consumed, or replaced.
 
 3. **SEO and Metadata**  
-   SEO is handled by dedicated components (e.g., the `SEO` directory) and metadata methods from `@/@conversiondigital/cd-headless-data`. This ensures pages and sub-components can automatically pull in or override relevant SEO fields from the CMS (title, description, canonical URL, etc.).
+   SEO is handled by dedicated components (e.g., the `SEO` directory) and metadata methods from `@/@conversiondigital/headless-basics-data`. This ensures pages and sub-components can automatically pull in or override relevant SEO fields from the CMS (title, description, canonical URL, etc.).
 
 4. **Breadth of UI Components**  
    The core includes hero blocks, rich text blocks, CTA lists, exploration sliders, product listings, sitemaps, and more, all designed to be flexible so that each one can adapt to different fields or data from the underlying CMS schema.
@@ -59,7 +59,7 @@ The Next.js application structure is split into distinct folders and modules, ea
 Run `pnpm run dev`. Your local dev environment is at `http://localhost:3000`.
 
 3. **CMS Integration**  
-- Adjust `@/@conversiondigital/cd-headless-data` or environment variables to point to your actual CMS endpoints.
+- Adjust `@/@conversiondigital/headless-basics-data` or environment variables to point to your actual CMS endpoints.
 - Modify or create new `mapping.ts` and `query.ts` files in any theme subfolder to support newly introduced fields or content types.
 
 4. **Add/Modify Components**  

@@ -7,10 +7,10 @@ import {
   getLogger,
   logPrefix,
   staticPageSeoExtractor,
-} from "@conversiondigital/cd-headless-data"
-import { PageBlueprint, PageDefinition } from "@conversiondigital/cd-headless-data/src/interfaces";
+} from "@conversiondigital/headless-basics-data"
+import { PageBlueprint, PageDefinition } from "@conversiondigital/headless-basics-data/src/interfaces";
 
-import { getDynamicSitemap } from "@conversiondigital/cd-headless-component-lib/src/theme/default/structures/services/sitemapService";
+import { getDynamicSitemap } from "@conversiondigital/headless-basics-components/src/theme/default/structures/services/sitemapService";
 import { setupSite } from '../siteContextService';
 
 

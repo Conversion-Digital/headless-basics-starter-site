@@ -1,10 +1,10 @@
 import React from "react"
-import { buildMegaMenu } from "@conversiondigital/cd-headless-component-lib/src/theme/default/structures/MegaMenu"
-import { HeadlessLayout } from "@conversiondigital/cd-headless-component-lib/src/theme/default/structures/views/headlessLayout"
-import { renderComponentContent } from "@conversiondigital/cd-headless-component-lib/src/theme/default/structures/services/components/pageComponentRenderService"
-import { getLogger, logPrefix, PageSubComponents } from "@conversiondigital/cd-headless-data";
+import { buildMegaMenu } from "@conversiondigital/headless-basics-components/src/theme/default/structures/MegaMenu"
+import { HeadlessLayout } from "@conversiondigital/headless-basics-components/src/theme/default/structures/views/headlessLayout"
+import { renderComponentContent } from "@conversiondigital/headless-basics-components/src/theme/default/structures/services/components/pageComponentRenderService"
+import { getLogger, logPrefix, PageSubComponents } from "@conversiondigital/headless-basics-data";
 
-import { PageBlueprint } from "@conversiondigital/cd-headless-data/src/interfaces";
+import { PageBlueprint } from "@conversiondigital/headless-basics-data/src/interfaces";
 const log = getLogger("page.renderPageContents")
 
 export function renderPage(

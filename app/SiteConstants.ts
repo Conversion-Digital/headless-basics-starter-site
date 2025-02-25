@@ -1,7 +1,7 @@
-import { COMPONENT_PRODUCT_DETAILS } from "@conversiondigital/cd-headless-data";
+import { COMPONENT_PRODUCT_DETAILS } from "@conversiondigital/headless-basics-data";
 
-import { SiteSettings, SiteComponents } from "@conversiondigital/cd-headless-data/src/interfaces";
-import { CountryCode } from "@conversiondigital/cd-headless-data/src/cms/constants";
+import { SiteSettings, SiteComponents } from "@conversiondigital/headless-basics-data/src/interfaces";
+import { CountryCode } from "@conversiondigital/headless-basics-data/src/cms/constants";
 
 const languageSites = JSON.parse(process.env.SITE_LANGUAGE_SITES);
 

@@ -1,9 +1,9 @@
 import { setupSite } from "@/app/siteContextService"
 
-import { fetchMetadata, fetchPageData, fetchStaticParams, getLogger, logPrefix } from "@conversiondigital/cd-headless-data"
+import { fetchMetadata, fetchPageData, fetchStaticParams, getLogger, logPrefix } from "@conversiondigital/headless-basics-data"
 import { renderPage } from "../renderPageContents"
 
-import { PageBlueprint, Path } from "@conversiondigital/cd-headless-data/src/interfaces";
+import { PageBlueprint, Path } from "@conversiondigital/headless-basics-data/src/interfaces";
 
 const log = getLogger("page.Slug.Dynamic")
 

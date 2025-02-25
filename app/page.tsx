@@ -1,10 +1,10 @@
 
 import { setupSite } from "@/app/siteContextService"
 import { renderPage } from "./renderPageContents"
-import { fetchPageData, fetchMetadata, logPrefix } from "@conversiondigital/cd-headless-data";
-import { getLogger } from "@conversiondigital/cd-headless-data";
+import { fetchPageData, fetchMetadata, logPrefix } from "@conversiondigital/headless-basics-data";
+import { getLogger } from "@conversiondigital/headless-basics-data";
 
-import { PageBlueprint, PageDefinition } from "@conversiondigital/cd-headless-data/src/interfaces";
+import { PageBlueprint, PageDefinition } from "@conversiondigital/headless-basics-data/src/interfaces";
 
 const log = getLogger("page.Homepage")
 

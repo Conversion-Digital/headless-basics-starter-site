@@ -1,6 +1,6 @@
 import { MySiteSettings } from "@/app/SiteConstants";
-import { getLogger, logPrefix } from "@conversiondigital/cd-headless-data";
-import { SiteSettings, BaseSiteConfig } from "@conversiondigital/cd-headless-data/src/interfaces";
+import { getLogger, logPrefix } from "@conversiondigital/headless-basics-data";
+import { SiteSettings, BaseSiteConfig } from "@conversiondigital/headless-basics-data/src/interfaces";
 
 const log = getLogger("page.siteContextService");
 

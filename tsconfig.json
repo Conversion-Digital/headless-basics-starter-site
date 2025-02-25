@@ -23,7 +23,7 @@
       "@/*": [
         "./*"
       ],
-      "@conversiondigital/cd-headless-component-lib/*": ["node_modules/@conversiondigital/cd-headless-component-lib/*"]
+      "@conversiondigital/headless-basics-components/*": ["node_modules/@conversiondigital/headless-basics-components/*"]
     },
     "plugins": [
       {
@@ -40,8 +40,8 @@
     "**/*.mjs",
     ".next/types/**/*.ts",
     "utils/**/*.d.ts",
-    "node_modules/@conversiondigital/cd-headless-data/**/*",
-    "node_modules/@conversiondigital/cd-headless-component-lib/**/*.ts"
+    "node_modules/@conversiondigital/headless-basics-data/**/*",
+    "node_modules/@conversiondigital/headless-basics-components/**/*.ts"
   ],
   "exclude": [
     "node_modules",

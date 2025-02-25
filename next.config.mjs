@@ -27,7 +27,7 @@ const restHeaders = { // ✅ Moved above nextConfig
 const nextConfig = {
   reactStrictMode: false,
   poweredByHeader: false,
-  transpilePackages: ['@conversiondigital/cd-headless-data', '@conversiondigital/cd-headless-component-lib'],
+  transpilePackages: ['@conversiondigital/headless-basics-data', '@conversiondigital/headless-basics-components'],
   images: {
     remotePatterns: [
       { protocol: "https", hostname: "picsum.photos" },
@@ -68,8 +68,8 @@ const nextConfig = {
       test: /\.(ts|tsx)$/,
       loader: "ts-loader",
       include: [
-        /node_modules\/@conversiondigital\/cd-headless-component-lib/,
-        /node_modules\/@conversiondigital\/cd-headless-data/,
+        /node_modules\/@conversiondigital\/headless-basics-components/,
+        /node_modules\/@conversiondigital\/headless-basics-data/,
       ],
       options: {
         transpileOnly: true, // Prevent full type-checking for performance
@@ -92,27 +92,27 @@ const nextConfig = {
 
     config.ignoreWarnings = [
       {
-        module: /@conversiondigital\/cd-headless-component-lib/,
+        module: /@conversiondigital\/headless-basics-components/,
         message: /Can't resolve 'theme\/.*\/components'/, // ✅ Matches all themes
       },
       {
-        module: /@conversiondigital\/cd-headless-data/,
+        module: /@conversiondigital\/headless-basics-data/,
         message: /Can't resolve 'theme\/.*\/components'/, // ✅ Matches missing theme components
       },
       {
-        module: /@conversiondigital\/cd-headless-data/,
-        message: /Can't resolve '@conversiondigital\/cd-headless-component-lib\/src\/theme\/.*\/components'/, // ✅ Matches theme imports
+        module: /@conversiondigital\/headless-basics-data/,
+        message: /Can't resolve '@conversiondigital\/headless-basics-components\/src\/theme\/.*\/components'/, // ✅ Matches theme imports
       },
       {
-        module: /@conversiondigital\/cd-headless-data/,
+        module: /@conversiondigital\/headless-basics-data/,
         message: /Can't resolve 'graphqlDataService.ts'/, // ✅ Matches missing GraphQL service imports
       },
       {
-        module: /@conversiondigital\/cd-headless-component-lib/,
+        module: /@conversiondigital\/headless-basics-components/,
         message: /Can't resolve/,
       },
       {
-        module: /cd-headless-data/,
+        module: /headless-basics-data/,
         message: /Can't resolve/,
       },
       {
@@ -120,7 +120,7 @@ const nextConfig = {
         message: /Can't resolve/,
       },
       {
-        module: /headless-component-lib\/.*/, 
+        module: /headless-basics-components\/.*/, 
         message: /Can't resolve/,
       }
     ];

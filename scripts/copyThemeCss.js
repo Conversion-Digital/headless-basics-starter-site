@@ -23,7 +23,7 @@ const siteTheme = process.env.SITE_THEME || 'default';
 // Define source and destination directories
 const srcDir = path.resolve(
   __dirname,
-  '../../headless-component-lib/src/theme',
+  '../../headless-basics-components/src/theme',
   siteTheme,
   'styles'
 );
@@ -31,7 +31,7 @@ const destDir = path.resolve(__dirname, `../theme/styles/component-lib-transfer`
 
 const configSrcPath = path.resolve(
   __dirname,
-  '../../headless-component-lib/src/theme',
+  '../../headless-basics-components/src/theme',
   siteTheme,
   'tailwind.config.js'
 );

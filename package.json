@@ -1,5 +1,5 @@
 {
-  "name": "headless-basics-v2-starter-kit",
+  "name": "headless-basics-starter-site",
   "version": "1.1.0",
   "private": true,
   "scripts": {
@@ -9,8 +9,8 @@
     "lint": "next lint",
     "preview": "pnpm run pre-run && next build && next start",
     "pre-run": "node scripts/copyThemeCss.js",
-    "dev-sync-data-lib": "node scripts/syncFolders.js ../headless-data-lib/src ./dev/headless-component-lib/src",
-    "dev-sync-data-lib-reverse": "node scripts/syncFolders.js ./dev/headless-component-lib/src ../headless-data-lib/src"
+    "dev-sync-data-lib": "node scripts/syncFolders.js ../headless-data-lib/src ./dev/headless-basics-components/src",
+    "dev-sync-data-lib-reverse": "node scripts/syncFolders.js ./dev/headless-basics-components/src ../headless-data-lib/src"
   },
   "dependencies": {
     "@babel/core": "^7.26.0",

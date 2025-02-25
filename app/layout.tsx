@@ -1,5 +1,5 @@
-import { getLogger } from "@conversiondigital/cd-headless-data/src/services/logging/LogConfig";
-import { PageBlueprint, logPrefix, PageSubComponents } from "@conversiondigital/cd-headless-data";
+import { getLogger } from "@conversiondigital/headless-basics-data/src/services/logging/LogConfig";
+import { PageBlueprint, logPrefix, PageSubComponents } from "@conversiondigital/headless-basics-data";
 const log = getLogger("site.layout.main");
 
 const siteTheme = process.env.SITE_THEME || 'default';
@@ -9,7 +9,7 @@ import '@/theme/styles/component-lib-transfer/globals.css';
 import { Inter as FontSans, Urbanist } from "next/font/google"
 
 import ThemeProvider from "./ThemeProvider"
-import { RouteChangeListener } from "@conversiondigital/cd-headless-component-lib/src/components/google/RouteChangeListener"
+import { RouteChangeListener } from "@conversiondigital/headless-basics-components/src/components/google/RouteChangeListener"
 import { bodyClass } from "@/theme/layoutClassesAndFonts";
 
 const fontSans = FontSans({
