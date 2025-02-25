@@ -1,0 +1,67 @@
+{
+  "name": "headless-basics-v2-starter-kit",
+  "version": "1.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "pnpm run pre-run && next dev",
+    "build": "pnpm run pre-run && next build",
+    "start": "pnpm run start",
+    "lint": "next lint",
+    "preview": "pnpm run pre-run && next build && next start",
+    "pre-run": "node scripts/copyThemeCss.js",
+    "dev-sync-data-lib": "node scripts/syncFolders.js ../headless-data-lib/src ./dev/headless-component-lib/src",
+    "dev-sync-data-lib-reverse": "node scripts/syncFolders.js ./dev/headless-component-lib/src ../headless-data-lib/src"
+  },
+  "dependencies": {
+    "@babel/core": "^7.26.0",
+    "@babel/preset-typescript": "^7.26.0",
+    "@fortawesome/fontawesome-svg-core": "^6.4.0",
+    "@fortawesome/free-brands-svg-icons": "^6.4.0",
+    "@fortawesome/free-solid-svg-icons": "^6.4.0",
+    "@fortawesome/react-fontawesome": "^0.2.0",
+    "@next/bundle-analyzer": "^13.4.4",
+    "@tailwindcss/postcss": "^4.0.6",
+    "babel-loader": "^9.2.1",
+    "express-rate-limit": "^7.4.0",
+    "express-slow-down": "^1.6.0",
+    "next": "latest",
+    "next-themes": "^0.2.1",
+    "next-transpile-modules": "^10.0.1",
+    "sharp": "^0.32.6",
+    "slick-carousel": "^1.8.1",
+    "tailwindcss-animate": "^1.0.5",
+    "typescript-logging": "^2.1.0",
+    "usehooks-ts": "^3.1.1",
+    "webpack": "^5.98.0",
+    "xss-filters": "^1.2.7"
+  },
+  "devDependencies": {
+    "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.35",
+    "@types/react-dom": "^18.0.11",
+    "autoprefixer": "^10.4.20",
+    "daisyui": "4.12.23",
+    "dotenv": "^16.4.7",
+    "express": "4.19.2",
+    "postcss": "^8.5.2",
+    "postcss-preset-env": "^8.3.2",
+    "prettier": "^2.8.7",
+    "tailwindcss": "^4.0.6",
+    "ts-loader": "^9.5.2",
+    "typescript": "^5.0.4"
+  },
+  "pnpm": {
+    "overrides": {
+      "postcss@<8.4.31": ">=8.4.31",
+      "zod@<=3.22.2": ">=3.22.3",
+      "semver@>=7.0.0 <7.5.2": ">=7.5.2",
+      "express@<4.19.2": ">=4.19.2",
+      "next@>=13.4.0 <14.1.1": ">=15.0.0",
+      "ws@>=8.0.0 <8.17.1": ">=8.17.1",
+      "word-wrap@<1.2.4": ">=1.2.4",
+      "tough-cookie@<4.1.3": ">=4.1.3",
+      "braces@<3.0.3": ">=3.0.3"
+    }
+  }
+}

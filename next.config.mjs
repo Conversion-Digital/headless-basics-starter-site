@@ -1,0 +1,133 @@
+/** @type {import('next').NextConfig} */
+import withBundleAnalyzer from "@next/bundle-analyzer";
+import webpack from "webpack"; // ✅ Fixed Import
+
+const withBundleAnalyzerConfig = withBundleAnalyzer({
+  enabled: process.env.ANALYZE === "true",
+});
+
+const cspDirective = [
+  "default-src 'self';",
+  "script-src 'self' https://www.gstatic.com https://vercel.live https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://maps.googleapis.com 'unsafe-inline' 'unsafe-eval';",
+  "img-src 'self' data: https://media.umbraco.io https://assets.vercel.com https://www.googletagmanager.com https://www.google-analytics.com;",
+  "font-src 'self' https://fonts.gstatic.com;",
+  "connect-src 'self' https://vercel.live https://www.google.com https://maps.googleapis.com https://media.umbraco.io https://www.googletagmanager.com https://www.google-analytics.com;",
+  "style-src 'self' 'unsafe-inline';",
+  "frame-src 'self' https://form.jotform.com https://www.google.com https://www.youtube.com https://youtube.com",
+];
+
+const restHeaders = { // ✅ Moved above nextConfig
+  "Api-Version": "2",
+  "Umb-Project-Alias": process.env.UMBRACO_PROJECT_ALIAS,
+  "Api-Key": process.env.UMBRACO_API_KEY,
+  "Accept-Language": "en-US",
+  "Content-Type": "application/json",
+};
+
+const nextConfig = {
+  reactStrictMode: false,
+  poweredByHeader: false,
+  transpilePackages: ['@conversiondigital/cd-headless-data', '@conversiondigital/cd-headless-component-lib'],
+  images: {
+    remotePatterns: [
+      { protocol: "https", hostname: "picsum.photos" },
+      { protocol: "https", hostname: "media.umbraco.io" },
+      { protocol: "https", hostname: "images.unsplash.com" },
+      { protocol: "https", hostname: "daisyui.com" },
+      { protocol: "https", hostname: "images.ctfassets.net" },
+      { protocol: "https", hostname: "assets-au-01.kc-usercontent.com" },
+      { protocol: "https", hostname: "api.lorem.space" },
+    ],
+  },
+  experimental: {
+    nextScriptWorkers: false,
+  },
+  async redirects() {
+    return [];
+  },
+  async headers() {
+    return [
+      {
+        source: "/:path*",
+        headers: [
+          { key: "Content-Security-Policy", value: cspDirective.join(" ") },
+          { key: "X-Frame-Options", value: "SAMEORIGIN" },
+          { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
+          { key: "Permissions-Policy", value: "camera=()" },
+        ],
+      },
+    ];
+  },
+  env: {
+    NEXT_PUBLIC_CMS_VARIANT: process.env.NEXT_PUBLIC_CMS_VARIANT,
+  },
+
+  webpack: (config, { isServer }) => {
+    config.module.rules.push({
+      test: /\.(ts|tsx)$/,
+      loader: "ts-loader",
+      include: [
+        /node_modules\/@conversiondigital\/cd-headless-component-lib/,
+        /node_modules\/@conversiondigital\/cd-headless-data/,
+      ],
+      options: {
+        transpileOnly: true, // Prevent full type-checking for performance
+      },
+    });
+
+    config.module.rules.push({
+      test: /\.(ttf|otf|eot|woff|woff2)$/,
+      type: "asset/resource",
+      generator: { filename: "static/fonts/[hash][ext][query]" },
+    });
+
+    // ✅ Fixed Ignore Plugin (Corrected push method) -- BELOW WAS RELATED TO SLICK SLIDER MISSING ITEMS
+    // config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /ajax-loader\.gif$/ }));
+    // config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /\.eot$/ }));
+    // config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /\.woff$/ }));
+    // config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /\.ttf$/ }));
+    // config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /\.svg$/ }));
+    
+
+    config.ignoreWarnings = [
+      {
+        module: /@conversiondigital\/cd-headless-component-lib/,
+        message: /Can't resolve 'theme\/.*\/components'/, // ✅ Matches all themes
+      },
+      {
+        module: /@conversiondigital\/cd-headless-data/,
+        message: /Can't resolve 'theme\/.*\/components'/, // ✅ Matches missing theme components
+      },
+      {
+        module: /@conversiondigital\/cd-headless-data/,
+        message: /Can't resolve '@conversiondigital\/cd-headless-component-lib\/src\/theme\/.*\/components'/, // ✅ Matches theme imports
+      },
+      {
+        module: /@conversiondigital\/cd-headless-data/,
+        message: /Can't resolve 'graphqlDataService.ts'/, // ✅ Matches missing GraphQL service imports
+      },
+      {
+        module: /@conversiondigital\/cd-headless-component-lib/,
+        message: /Can't resolve/,
+      },
+      {
+        module: /cd-headless-data/,
+        message: /Can't resolve/,
+      },
+      {
+        module: /headless-data-lib\/.*/, 
+        message: /Can't resolve/,
+      },
+      {
+        module: /headless-component-lib\/.*/, 
+        message: /Can't resolve/,
+      }
+    ];
+    
+
+    return config;
+  },
+};
+
+export default withBundleAnalyzerConfig(nextConfig);
