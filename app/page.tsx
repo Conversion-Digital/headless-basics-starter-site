@@ -9,7 +9,7 @@ import { PageBlueprint } from "@conversiondigital/headless-basics-data/src/inter
 const log = getLogger("page.Homepage")
 
 export default async function Page() {
-  log.info(`${logPrefix()}[SHOWCASE] Page Homepage loading -- ${process.env.SITE_ID}`) 
+  log.trace(`${logPrefix()}[SHOWCASE] Page Homepage loading -- ${process.env.SITE_ID}`) 
   setupSite();
   log.trace(`${logPrefix()}[SHOWCASE] Page Homepage loading`)
   const bluePrint: PageBlueprint = await fetchPageData({ slug: ["/"], source: "page.Homepage.fetchPageData" })
