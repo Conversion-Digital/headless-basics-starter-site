@@ -37,6 +37,7 @@ const nextConfig = {
       { protocol: "https", hostname: "images.ctfassets.net" },
       { protocol: "https", hostname: "assets-au-01.kc-usercontent.com" },
       { protocol: "https", hostname: "api.lorem.space" },
+      { protocol: "https", hostname: "cdn.sanity.io" },
     ],
   },
   experimental: {
