@@ -39,7 +39,17 @@ async function getSitemapData() {
 
   const data = await buildPageData(pageConstruction);
   let dataSitemap = await collectSitemapNavigationStructure("sitemapClient", pageConstruction.source);
-  dataSitemap = dataSitemap.filter((x) => typeof(x.showInSitemap) !== 'undefined' && x.showInSitemap === true && typeof(x.url) !== 'undefined' && x.url != null);
+  if (Array.isArray(dataSitemap)) {
+    dataSitemap = dataSitemap.filter((x) =>
+      typeof x.showInSitemap !== 'undefined' &&
+      x.showInSitemap === true &&
+      typeof x.url !== 'undefined' &&
+      x.url != null
+    );
+  } else {
+    // Handle non-array case: possibly log an error or set dataSitemap to an empty array
+    dataSitemap = [];
+  }
   data.sitemapData = dataSitemap;
   // We generate the XML sitemap with the posts data
   const site = GetSite();
