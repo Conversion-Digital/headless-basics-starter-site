@@ -54,3 +54,4 @@ theme/styles/tailwind.config.js
 theme/styles/component-lib-transfer
 .env.local.example.norg
 .env.local.sanity.example
+/env_example
