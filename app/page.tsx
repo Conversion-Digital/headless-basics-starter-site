@@ -14,6 +14,11 @@ export default async function Page() {
   log.trace(`${logPrefix()}[SHOWCASE] Page Homepage loading`)
   const bluePrint: PageBlueprint = await fetchPageData({ slug: ["/"], source: "page.Homepage.fetchPageData" })
   log.info(`${logPrefix()}[SHOWCASE] Page Homepage loaded ${process.env.SITE_ID}`)
+
+  // const identifier = "calltoactioncard1";
+  // const cmsPrefix = "sanity";
+  // const queryModule = await import(`@conversiondigital/headless-basics-components/src/theme/corporate1/components/${identifier}/${cmsPrefix}-query`);
+
   return renderPage(bluePrint)
 }
 
