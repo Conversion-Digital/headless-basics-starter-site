@@ -29,6 +29,7 @@ const nextConfig = {
   poweredByHeader: false,
   transpilePackages: ['@conversiondigital/headless-basics-data', '@conversiondigital/headless-basics-components'],
   images: {
+    dangerouslyAllowSVG: true,
     remotePatterns: [
       { protocol: "https", hostname: "picsum.photos" },
       { protocol: "https", hostname: "media.umbraco.io" },
@@ -38,6 +39,7 @@ const nextConfig = {
       { protocol: "https", hostname: "assets-au-01.kc-usercontent.com" },
       { protocol: "https", hostname: "api.lorem.space" },
       { protocol: "https", hostname: "cdn.sanity.io" },
+      { protocol: "https", hostname: "placehold.co" },
     ],
   },
   experimental: {
