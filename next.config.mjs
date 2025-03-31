@@ -85,6 +85,13 @@ const nextConfig = {
       generator: { filename: "static/fonts/[hash][ext][query]" },
     });
 
+    // Added IgnorePlugin to ignore .xml and .txt files
+    config.plugins.push(
+      new webpack.IgnorePlugin({
+        resourceRegExp: /\.(prompt)$/,
+      })
+    );
+
     // ✅ Fixed Ignore Plugin (Corrected push method) -- BELOW WAS RELATED TO SLICK SLIDER MISSING ITEMS
     // config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /ajax-loader\.gif$/ }));
     // config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /\.eot$/ }));
