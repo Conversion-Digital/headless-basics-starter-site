@@ -88,7 +88,7 @@ const nextConfig = {
     // Added IgnorePlugin to ignore .xml and .txt files
     config.plugins.push(
       new webpack.IgnorePlugin({
-        resourceRegExp: /\.(prompt)$/,
+        resourceRegExp: /\.(prompt|example)$/,
       })
     );
 
