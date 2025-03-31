@@ -4,6 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "pnpm run pre-run && next dev",
+    "dev-fast" : "pnpm run pre-run && next dev --turbopack",
     "build": "pnpm run pre-run && next build",
     "start": "pnpm run start",
     "lint": "next lint",
