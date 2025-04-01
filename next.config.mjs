@@ -88,9 +88,22 @@ const nextConfig = {
     // Added IgnorePlugin to ignore .xml and .txt files
     config.plugins.push(
       new webpack.IgnorePlugin({
-        resourceRegExp: /\.(prompt|example)$/,
+        checkResource(resource) {
+          // Ignore .prompt or .example files
+          if (/\.(prompt|example)$/.test(resource)) {
+            return true;
+          }
+    
+          // Ignore anything in **/variants/data/node_modules
+          if (/[/\\]variants[/\\]data[/\\]node_modules[/\\]/.test(resource)) {
+            return true;
+          }
+    
+          return false;
+        },
       })
     );
+    
 
     // ✅ Fixed Ignore Plugin (Corrected push method) -- BELOW WAS RELATED TO SLICK SLIDER MISSING ITEMS
     // config.plugins.push(new webpack.IgnorePlugin({ resourceRegExp: /ajax-loader\.gif$/ }));
