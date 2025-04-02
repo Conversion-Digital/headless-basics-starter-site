@@ -8,7 +8,7 @@ import {
   logPrefix,
   staticPageSeoExtractor,
 } from "@conversiondigital/headless-basics-data"
-import { PageBlueprint, PageDefinition } from "@conversiondigital/headless-basics-data/src/interfaces";
+import { PageDefinition } from "@conversiondigital/headless-basics-data/src/interfaces";
 
 import { getDynamicSitemap } from "@conversiondigital/headless-basics-components/src/theme/default/structures/services/sitemapService";
 import { setupSite } from '../siteContextService';
@@ -34,7 +34,7 @@ async function getSitemapData() {
     isDynamic: false,
     source: 'page.sitemap.global.getSitemapData()'
   }
-  let { cmsUrl }: { cmsUrl: any } = await browserUrlToCmsUrlConverter(pageConstruction.preliminarySlug);
+  const { cmsUrl }: { cmsUrl: string } = await browserUrlToCmsUrlConverter(pageConstruction.preliminarySlug);
   pageConstruction.pageIdentifier = { pageVariant: "home", backEndSlug: cmsUrl, frontEndSlug: pageConstruction.preliminarySlug, identifier: undefined, cmsType: "home", isFixedLayout: true };
 
   const data = await buildPageData(pageConstruction);

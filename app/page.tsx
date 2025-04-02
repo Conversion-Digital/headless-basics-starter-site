@@ -4,7 +4,7 @@ import { renderPage } from "./renderPageContents"
 import { fetchPageData, fetchMetadata, logPrefix } from "@conversiondigital/headless-basics-data";
 import { getLogger } from "@conversiondigital/headless-basics-data";
 
-import { PageBlueprint, PageDefinition } from "@conversiondigital/headless-basics-data/src/interfaces";
+import { PageBlueprint } from "@conversiondigital/headless-basics-data/src/interfaces";
 
 const log = getLogger("page.Homepage")
 
@@ -22,7 +22,7 @@ export default async function Page() {
   return renderPage(bluePrint)
 }
 
-export async function generateMetadata({ params }) {
+export async function generateMetadata() {
   setupSite();
   log.trace(`${logPrefix()}[SHOWCASE] generateMetadata for homepage`)
   return await fetchMetadata({ slug: ["/"] })
