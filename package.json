@@ -17,8 +17,8 @@
   "dependencies": {
     "@babel/core": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
-    "@conversiondigital/headless-basics-components": "github:Conversion-Digital/headless-basics-components",
-    "@conversiondigital/headless-basics-data": "github:Conversion-Digital/headless-basics-data",
+    "@conversiondigital/headless-basics-components": "github:Conversion-Digital/headless-basics-components#deployment",
+    "@conversiondigital/headless-basics-data": "github:Conversion-Digital/headless-basics-data#deployment",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
     "@fortawesome/free-brands-svg-icons": "^6.4.0",
     "@fortawesome/free-solid-svg-icons": "^6.4.0",
