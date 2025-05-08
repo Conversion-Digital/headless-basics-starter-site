@@ -9,7 +9,7 @@ const withBundleAnalyzerConfig = withBundleAnalyzer({
 const cspDirective = [
   "default-src 'self';",
   "script-src 'self' https://www.gstatic.com https://vercel.live https://www.google.com https://www.googletagmanager.com https://www.google-analytics.com https://maps.googleapis.com 'unsafe-inline' 'unsafe-eval';",
-  "img-src 'self' data: https://media.umbraco.io https://assets.vercel.com https://www.googletagmanager.com https://www.google-analytics.com https://cdn.sanity.io;",
+  "img-src 'self' data: https://media.umbraco.io https://assets.vercel.com https://www.googletagmanager.com https://www.google-analytics.com https://cdn.sanity.io https://placehold.co;",
   "font-src 'self' https://fonts.gstatic.com;",
   "connect-src 'self' https://vercel.live https://www.google.com https://maps.googleapis.com https://media.umbraco.io https://www.googletagmanager.com https://www.google-analytics.com;",
   "style-src 'self' 'unsafe-inline';",
