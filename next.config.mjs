@@ -85,6 +85,30 @@ const nextConfig = {
       generator: { filename: "static/fonts/[hash][ext][query]" },
     });
 
+    config.module.rules.unshift({
+      test: /sanity-schema\.ts$/,
+      use: 'ignore-loader',
+    });
+    
+    config.plugins.push(
+      new webpack.IgnorePlugin({
+        // match "anything…/sanity-schema.ts" at the end of the request string
+        resourceRegExp: /.*[\/\\]sanity-schema\.ts$/
+      }))
+    
+    config.module.rules.unshift({
+      test: /sanityCommonSchema\.ts$/,
+      use: 'ignore-loader',
+    });
+    
+    config.plugins.push(
+      new webpack.IgnorePlugin({
+        // match "anything…/sanity-schema.ts" at the end of the request string
+        resourceRegExp: /.*[\/\\]sanityCommonSchema\.ts$/
+      }))
+    
+    
+      
     // Added IgnorePlugin to ignore .xml and .txt files
     config.plugins.push(
       new webpack.IgnorePlugin({
