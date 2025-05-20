@@ -3,13 +3,12 @@ const fs = require('fs');
 const path = require('path');
 const dotenv = require('dotenv');
 
-// Determine which env file to load: .env first, then .env.local if not found.
+// 1. Load .env or .env.local
 const envPath = fs.existsSync(path.resolve(process.cwd(), '.env'))
   ? path.resolve(process.cwd(), '.env')
   : fs.existsSync(path.resolve(process.cwd(), '.env.local'))
     ? path.resolve(process.cwd(), '.env.local')
     : null;
-
 if (envPath) {
   dotenv.config({ path: envPath });
   console.log(`Loaded environment variables from ${envPath}`);
@@ -17,60 +16,75 @@ if (envPath) {
   console.warn('No .env or .env.local file found. Using process.env directly.');
 }
 
-// Determine the site theme from the environment variable, defaulting to 'default'
+// 2. Determine theme name
 const siteTheme = process.env.SITE_THEME || 'default';
 
-// Define source and destination directories
-const srcDir = path.resolve(
-  __dirname,
-  '../../headless-basics-components/src/theme',
-  siteTheme,
-  'styles'
+// 3. Define two possible source roots:
+//    A) the published package in node_modules
+//    B) a local dev checkout one level up
+const pkgPath = path.resolve(
+  process.cwd(),
+  'node_modules/@conversiondigital/headless-basics-components/src/theme'
 );
-const destDir = path.resolve(__dirname, `../theme/styles/component-lib-transfer`);
+const devPath = path.resolve(
+  __dirname,
+  '../../headless-basics-components/src/theme'
+);
 
-const configSrcPath = path.resolve(
-  __dirname,
-  '../../headless-basics-components/src/theme',
-  siteTheme,
-  'tailwind.config.js'
-);
-const configDestPath = path.resolve(__dirname, '../theme/styles/tailwind.config.js');
+let themeRoot;
+if (fs.existsSync(pkgPath)) {
+  themeRoot = pkgPath;
+  console.log('Using node_modules package for headless-basics-components');
+} else if (fs.existsSync(devPath)) {
+  themeRoot = devPath;
+  console.log('Using local dev checkout for headless-basics-components');
+} else {
+  console.error(
+    'Could not find headless-basics-components in node_modules or ../../headless-basics-components'
+  );
+  process.exit(1);
+}
+
+// 4. Build source and destination paths
+const srcDir = path.join(themeRoot, siteTheme, 'styles');
+const configSrcPath = path.join(themeRoot, siteTheme, 'tailwind.config.js');
+
+const destDir = path.resolve(process.cwd(), 'theme/styles/component-lib-transfer');
+const configDestPath = path.resolve(process.cwd(), 'theme/styles/tailwind.config.js');
 
 console.log(`Copying theme CSS for "${siteTheme}"...`);
-console.log(`Source directory: ${srcDir}`);
-console.log(`Destination directory: ${destDir}`);
+console.log(` → srcDir:    ${srcDir}`);
+console.log(` → destDir:   ${destDir}`);
+console.log(` → configSrc: ${configSrcPath}`);
+console.log(` → configDst: ${configDestPath}`);
 
 try {
-  // Ensure the destination directory exists
+  // ensure destination exists
   fs.mkdirSync(destDir, { recursive: true });
-  
-  // Read all files in the source directory
-  const files = fs.readdirSync(srcDir);
-  // Filter for only CSS files
-  const cssFiles = files.filter(file => path.extname(file).toLowerCase() === '.css');
 
-  // Copy each CSS file to the destination directory
-  cssFiles.forEach(file => {
-    const sourceFilePath = path.join(srcDir, file);
-    const destinationFilePath = path.join(destDir, file);
-    fs.copyFileSync(sourceFilePath, destinationFilePath);
-    console.log(`Successfully copied ${sourceFilePath} to ${destinationFilePath}`);
-  });
-  
-  if (cssFiles.length === 0) {
-    console.warn('No CSS files found to copy.');
+  // copy all .css files
+  const files = fs.readdirSync(srcDir);
+  const cssFiles = files.filter((f) => f.toLowerCase().endsWith('.css'));
+  if (cssFiles.length) {
+    cssFiles.forEach((file) => {
+      const from = path.join(srcDir, file);
+      const to = path.join(destDir, file);
+      fs.copyFileSync(from, to);
+      console.log(`  ✔ copied ${file}`);
+    });
+  } else {
+    console.warn('  ⚠ no .css files found to copy');
   }
 
-  // Copy tailwind.config.js if it exists
+  // copy tailwind.config.js
   if (fs.existsSync(configSrcPath)) {
     fs.mkdirSync(path.dirname(configDestPath), { recursive: true });
     fs.copyFileSync(configSrcPath, configDestPath);
-    console.log(`Successfully copied ${configSrcPath} to ${configDestPath}`);
+    console.log('  ✔ copied tailwind.config.js');
   } else {
-    console.warn(`No tailwind.config.js found at ${configSrcPath}`);
+    console.warn('  ⚠ no tailwind.config.js found to copy');
   }
-} catch (error) {
-  console.error('Error copying theme files:', error);
+} catch (err) {
+  console.error('Error copying theme files:', err);
   process.exit(1);
 }
