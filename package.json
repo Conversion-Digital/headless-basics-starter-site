@@ -15,6 +15,8 @@
     "dev-sync-data-lib-reverse": "node scripts/syncFolders.js ./dev/headless-basics-components/src ../headless-data-lib/src"
   },
   "dependencies": {
+    "@conversiondigital/headless-baisics-components": "github:conversiondigital/headless-basics-components#theme/conversion",
+    "@conversiondigital/headless-baisics-data": "github:conversiondigital/headless-basics-data#theme/conversion",
     "@babel/core": "^7.26.0",
     "@babel/preset-typescript": "^7.26.0",
     "@fortawesome/fontawesome-svg-core": "^6.4.0",
