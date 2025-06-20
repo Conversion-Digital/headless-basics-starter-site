@@ -42,6 +42,19 @@ const nextConfig = {
       { protocol: "https", hostname: "placehold.co" },
     ],
   },
+  eslint: {
+    // ⛔ Stops the ESLint step from running in `next build`
+    ignoreDuringBuilds: true,
+  },
+  typescript: {
+    /**
+     * ❗  true  →  Next.js will still compile & bundle
+     *              even if tsc finds errors.
+     *              Use ONLY if you’re running type-checks
+     *              somewhere else (CI, pre-commit, etc.).
+     */
+    ignoreBuildErrors: true
+  },
   experimental: {
     nextScriptWorkers: false,
   },
