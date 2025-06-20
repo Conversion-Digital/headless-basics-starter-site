@@ -106,9 +106,7 @@ const nextConfig = {
         // match "anything…/sanity-schema.ts" at the end of the request string
         resourceRegExp: /.*[\/\\]sanityCommonSchema\.ts$/
       }))
-    
-    
-      
+          
     // Added IgnorePlugin to ignore .xml and .txt files
     config.plugins.push(
       new webpack.IgnorePlugin({
@@ -124,6 +122,22 @@ const nextConfig = {
           }
     
           return false;
+        },
+      })
+    );
+
+    config.plugins.push(
+      new webpack.IgnorePlugin({
+        checkResource(resource) {
+          const inHeadlessComponents =
+            /node_modules[\\/]@conversiondigital[\\/]headless-basics-components/.test(resource) &&
+            /tsconfig\.json$/.test(resource);
+
+          // keep anything that ends with .../components/.../variants/data/tsconfig.json
+          const isVariantData =
+            /components[\\/].*[\\/]variants[\\/]data[\\/]tsconfig\.json$/.test(resource);
+
+          return inHeadlessComponents && !isVariantData;
         },
       })
     );
