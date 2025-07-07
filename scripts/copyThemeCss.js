@@ -47,9 +47,11 @@ if (fs.existsSync(pkgPath)) {
 
 // 4. Build source and destination paths
 const srcDir = path.join(themeRoot, siteTheme, 'styles');
+const fontsSrcPath = path.join(themeRoot, siteTheme, 'styles/fonts/fontsGlobalStyle.tsx');
 const configSrcPath = path.join(themeRoot, siteTheme, 'tailwind.config.js');
 
 const destDir = path.resolve(process.cwd(), 'theme/styles/component-lib-transfer');
+const fontsDestPath = path.resolve(process.cwd(), 'theme/styles/fonts/fontsGlobalStyle.tsx');
 const configDestPath = path.resolve(process.cwd(), 'theme/styles/tailwind.config.js');
 
 console.log(`Copying theme CSS for "${siteTheme}"...`);
@@ -83,6 +85,15 @@ try {
     console.log('  ✔ copied tailwind.config.js');
   } else {
     console.warn('  ⚠ no tailwind.config.js found to copy');
+  }
+
+  // copy fontsGlobalStyle.tsx
+  if (fs.existsSync(fontsSrcPath)) {
+    fs.mkdirSync(path.dirname(fontsDestPath), { recursive: true });
+    fs.copyFileSync(fontsSrcPath, fontsDestPath);
+    console.log('  ✔ copied fontsGlobalStyle.tsx');
+  } else {
+    console.warn('  ⚠ no fontsGlobalStyle.tsx found to copy');
   }
 } catch (err) {
   console.error('Error copying theme files:', err);
