@@ -1,6 +1,8 @@
 /** @type {import('next').NextConfig} */
 import withBundleAnalyzer from "@next/bundle-analyzer";
 import webpack from "webpack"; // ✅ Fixed Import
+import { resolve } from "path";
+import { fileURLToPath } from "url";
 
 const withBundleAnalyzerConfig = withBundleAnalyzer({
   enabled: process.env.ANALYZE === "true",
@@ -85,7 +87,7 @@ const nextConfig = {
       generator: { filename: "static/fonts/[hash][ext][query]" },
     });
 
-    // Added IgnorePlugin to ignore .xml and .txt files
+    // Added IgnorePlugin to ignore .xml and .txt files and Sanity schema files
     config.plugins.push(
       new webpack.IgnorePlugin({
         checkResource(resource) {
@@ -102,6 +104,23 @@ const nextConfig = {
           return false;
         },
       })
+    );
+
+    // Ignore Sanity schema files specifically
+    config.plugins.push(
+      new webpack.IgnorePlugin({
+        resourceRegExp: /sanity-schema\.(ts|js)$/,
+        contextRegExp: /components/,
+      })
+    );
+
+    // Replace sanity-schema imports with empty module
+    const __dirname = fileURLToPath(new URL('.', import.meta.url));
+    config.plugins.push(
+      new webpack.NormalModuleReplacementPlugin(
+        /sanity-schema\.(ts|js)$/,
+        resolve(__dirname, 'empty-sanity-schema.js')
+      )
     );
     
 
