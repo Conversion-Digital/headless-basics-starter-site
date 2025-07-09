@@ -7,6 +7,7 @@ import '@/theme/styles/component-lib-transfer/globals.css';
 import ThemeProvider from "./ThemeProvider"
 import { RouteChangeListener } from "@conversiondigital/headless-basics-components/src/components/google/RouteChangeListener"
 import { bodyClass } from "@/theme/layoutClassesAndFonts";
+import FontsGlobalStyle from "@/theme/styles/fonts/fontsGlobalStyle";
 
 // const fontSans = FontSans({
 //   subsets: ["latin"],
@@ -28,6 +29,7 @@ export default function RootLayout({ children }) {
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="icon" href="/showcase/favicon.ico" sizes="any" />
+        <FontsGlobalStyle />
       </head>
 
       <body
