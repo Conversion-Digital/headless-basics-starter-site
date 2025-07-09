@@ -51,6 +51,7 @@ repomix-output.xml
 theme/styles/component-lib-transfer/globals.css
 theme/styles/component-lib-transfer/components.css
 theme/styles/tailwind.config.js
+theme/styles/fonts/fontsGlobalStyle.tsx
 theme/styles/component-lib-transfer
 .env.local.example.norg
 .env.local.sanity.example
